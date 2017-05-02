@@ -10,31 +10,16 @@ namespace WhiteRat
 	{
 		static Network net;
 
-		static TestData[] Prepare()
+		static int[][] Prepare()
 		{
-			TestData[] tD = new TestData[4];
+			int[][] data = new int[4][];
 
-			TestData tD1 = new TestData();
-			tD1.inputVector = new int[2] { 0, 0 };
-			tD1.outputValue = 1;
-			tD[0] = tD1;
+			data[0] = new int[] { 0, 0, 1 };
+			data[1] = new int[] { 0, 1, 0 };
+			data[2] = new int[] { 1, 0, 0 };
+			data[3] = new int[] { 1, 1, 0 };
 
-			TestData tD2 = new TestData();
-			tD2.inputVector = new int[2] { 0, 1 };
-			tD2.outputValue = 1;
-			tD[1] = tD2;
-
-			TestData tD3 = new TestData();
-			tD3.inputVector = new int[2] { 1, 0 };
-			tD3.outputValue = 1;
-			tD[2] = tD3;
-
-			TestData tD4 = new TestData();
-			tD4.inputVector = new int[2] { 1, 1 };
-			tD4.outputValue = 0;
-			tD[3] = tD4;
-
-			return tD;
+			return data;
 		}
 
 		static void Main(string[] args)
@@ -42,17 +27,15 @@ namespace WhiteRat
 			int[] config = { 2, 1 };
 			net = new Network(config);
 
-			TestData[] tD_prepared = Prepare();
+			int[][] tD_prepared = Prepare();
 			net.PerceptronLearn(tD_prepared);
-			
-			net.FeedForward(new int[] { 0, 0 });
-			Console.WriteLine(net.output[0]);
-			net.FeedForward(new int[] { 0, 1 });
-			Console.WriteLine(net.output[0]);
-			net.FeedForward(new int[] { 1, 0 });
-			Console.WriteLine(net.output[0]);
-			net.FeedForward(new int[] { 1, 1 });
-			Console.WriteLine(net.output[0]);
+
+			for (int i = 0; i < 4; i++)
+			{
+				int[] tc = new int[] { tD_prepared[i][0], tD_prepared[i][1] };
+				net.FeedForward(tc);
+				Console.WriteLine(tc[0] + " " + tc[1] + " | " + tD_prepared[i][2] + " -> " + net.output[0]);
+			}
 
 			Console.WriteLine("\nGot to here!");
 			Console.ReadLine();

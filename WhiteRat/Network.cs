@@ -59,14 +59,13 @@ namespace WhiteRat
 				tempOutputs = new float[layers[i - 1].neurons.Length];
 
 				//Set tempOutputs helper array to previous layer outputs
-				for (int j = 1; j < tempOutputs.Length; j++)
+				for (int j = 0; j < tempOutputs.Length; j++)
 					tempOutputs[j] = layers[i - 1].neurons[j].output;
 
 				//Use tempOutputs to set current layer inputs to previous layer outputs
 				for (int j = 0; j < layers[i].neurons.Length; j++)
 				{
-					for (int k = 0; k < tempOutputs.Length; k++)
-						layers[i].neurons[j].inputs[k + 1] = tempOutputs[k];
+					layers[i].neurons[j].inputs = tempOutputs;
 					layers[i].neurons[j].ComputeOutput();
 				}
 			}
@@ -76,25 +75,30 @@ namespace WhiteRat
 				output[i] = layers.Last().neurons[i].output;
 		}
 
-		public void PerceptronLearn(TestData[] tData)
+		public void PerceptronLearn(int[][] tData)
 		{
-			int iterations = 10;
+			int iterations = 100;
 
 			for (int iteration = 0; iteration < iterations; iteration++)
-			{
-				for (int testCase = 0; testCase < tData.Length; testCase++)
+				foreach (int[] testCase in tData)
 				{
-					FeedForward(tData[testCase].inputVector);
-					float output = this.output[0];
+					int[] inputVector = new int[] { testCase[0], testCase[1] };
+					FeedForward(inputVector);
+					float actual = this.output[0];
+					float desired = testCase[2];
 
-					for (int i = 1; i < layers.Length; i++)
-						for (int j = 0; j < layers[i].neurons.Length; j++)
-							for (int k = 0; k < layers[i].neurons[j].inputs.Length; k++)
-								layers[i].neurons[j].weights[k] += (tData[testCase].outputValue - output) * layers[i].neurons[j].inputs[k];
+					foreach (Layer l in layers)
+						foreach (Neuron n in l.neurons)
+						{
+							float error = desired - actual;
+							for (int i = 0; i < n.inputs.Length; i++)
+								n.weights[i] += error * n.inputs[i];
+							n.threshold += error;
+						}
+
 				}
-			}
-		}
-	}
+		} //End PerceptronLearn() function
+	} //End Network class
 
 	struct Layer
 	{
