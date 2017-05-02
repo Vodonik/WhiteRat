@@ -12,20 +12,18 @@ namespace WhiteRat
 		public int ID;
 		private int numberOfInputs;
 
-		private float[]
+		public float[]
 			weights,
 			inputs;
 
-		private float bias;
-
-		private int output;
+		public int output;
 
 		public Neuron(int inputsNo)
 		{
-			numberOfInputs = inputsNo;
+			numberOfInputs = inputsNo + 1;
 			weights = new float[numberOfInputs];
 			inputs = new float[numberOfInputs];
-			bias = 0;
+			inputs[0] = 1;
 
 			ID = numberOfNeurons;
 			numberOfNeurons++;
@@ -38,7 +36,7 @@ namespace WhiteRat
 			for (int i = 0; i < numberOfInputs; i++)
 				inputsSum += weights[i] * inputs[i];
 
-			float biasedInputsSum = inputsSum + bias;
+			float biasedInputsSum = inputsSum + weights[0];
 
 			//Perceptron
 			this.output = ActivationFunction(biasedInputsSum);
