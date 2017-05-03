@@ -77,15 +77,15 @@ namespace WhiteRat
 
 		public void PerceptronLearn(int[][] tData)
 		{
-			int iterations = 10;
+			int iterations = 5;
 
 			for (int iteration = 0; iteration < iterations; iteration++)
 				foreach (int[] testCase in tData)
 				{
-					int[] inputVector = new int[] { testCase[0], testCase[1] };
+					int[] inputVector = testCase.Take(testCase.Length - 1).ToArray();
 					FeedForward(inputVector);
 					float actual = this.output[0];
-					float desired = testCase[2];
+					float desired = testCase.Last();
 
 					foreach (Layer l in layers)
 						foreach (Neuron n in l.neurons)
@@ -95,7 +95,6 @@ namespace WhiteRat
 								n.weights[i] += error * n.inputs[i];
 							n.bias += error;
 						}
-
 				}
 		} //End PerceptronLearn() function
 	} //End Network class
@@ -108,11 +107,5 @@ namespace WhiteRat
 		{
 			neurons = new Neuron[neuronNumber];
 		}
-	}
-
-	struct TestData
-	{
-		public int[] inputVector { get; set; }
-		public int outputValue { get; set; }
 	}
 }
