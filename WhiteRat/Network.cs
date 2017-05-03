@@ -77,7 +77,7 @@ namespace WhiteRat
 
 		public void PerceptronLearn(int[][] tData)
 		{
-			int iterations = 100;
+			int iterations = 10;
 
 			for (int iteration = 0; iteration < iterations; iteration++)
 				foreach (int[] testCase in tData)
@@ -93,7 +93,7 @@ namespace WhiteRat
 							float error = desired - actual;
 							for (int i = 0; i < n.inputs.Length; i++)
 								n.weights[i] += error * n.inputs[i];
-							n.threshold += error;
+							n.bias += error;
 						}
 
 				}

@@ -15,8 +15,8 @@ namespace WhiteRat
 			int[][] data = new int[4][];
 
 			data[0] = new int[] { 0, 0, 1 };
-			data[1] = new int[] { 0, 1, 0 };
-			data[2] = new int[] { 1, 0, 0 };
+			data[1] = new int[] { 0, 1, 1 };
+			data[2] = new int[] { 1, 0, 1 };
 			data[3] = new int[] { 1, 1, 0 };
 
 			return data;
