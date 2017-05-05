@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace WhiteRat
 {
@@ -14,7 +15,7 @@ namespace WhiteRat
 
 		static void Main(string[] args)
 		{
-			int[] config = { 256, 16, 1 };
+			int[] config = { 256, 1, 1 };
 			net = new Network(config);
 
 			int[][] tD_prepared = PrepareTrainingData();
@@ -25,10 +26,9 @@ namespace WhiteRat
 			for (int i = 0; i < testData.Length; i++)
 			{
 				net.FeedForward(testData[i].Take(testData[i].Length - 1).ToArray());
-				Console.WriteLine(tD_prepared[i][256] + " -> " + net.output[0]);
+				Console.WriteLine(testData[i][256] + " -> " + net.output[0]);
 			}
 
-			Console.WriteLine("\nGot to here!");
 			Console.ReadLine();
 		}
 

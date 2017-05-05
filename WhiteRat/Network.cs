@@ -13,6 +13,8 @@ namespace WhiteRat
 		public Layer[] layers;
 		public float[] output;
 
+		private float[] tempOutputs;
+
 		public Network(int[] config)
 		{
 			configuration = config;
@@ -45,8 +47,6 @@ namespace WhiteRat
 			}
 		}
 
-		private float[] tempOutputs;
-
 		public void FeedForward(int[] inputVector)
 		{
 			//Set first layer outputs to inputVector
@@ -77,7 +77,7 @@ namespace WhiteRat
 
 		public void PerceptronLearn(int[][] tData)
 		{
-			int iterations = 5;
+			int iterations = 1000;
 
 			for (int iteration = 0; iteration < iterations; iteration++)
 				foreach (int[] testCase in tData)
