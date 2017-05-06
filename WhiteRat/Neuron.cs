@@ -16,7 +16,7 @@ namespace WhiteRat
 			weights,
 			inputs;
 
-		public int output;
+		public float output;
 
 		public float bias;
 
@@ -25,8 +25,6 @@ namespace WhiteRat
 			numberOfInputs = inputsNo;
 			weights = new float[numberOfInputs];
 			inputs = new float[numberOfInputs];
-			//inputs[0] = 1;
-
 			bias = 0;
 
 			ID = numberOfNeurons;
@@ -43,13 +41,10 @@ namespace WhiteRat
 			float biased = inputsSum + bias;
 
 			//Perceptron
-			this.output = ActivationFunction(biased);
-		}
+			//this.output = (biased > 0) ? 1 : 0;
 
-		private int ActivationFunction(float sum)
-		{
-			//Perceptron
-			return (sum > 0) ? 1 : 0;
+			//Sigmoid
+			this.output = 1.0f / (1 + (float)Math.Exp(-biased));
 		}
 	}
 }
