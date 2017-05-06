@@ -4,5 +4,3 @@ C:\Users\IsBoris\Documents\Visual Studio 2015\Projects\WhiteRat\WhiteRat\bin\Deb
 C:\Users\IsBoris\Documents\Visual Studio 2015\Projects\WhiteRat\WhiteRat\obj\Debug\WhiteRat.csprojResolveAssemblyReference.cache
 C:\Users\IsBoris\Documents\Visual Studio 2015\Projects\WhiteRat\WhiteRat\obj\Debug\WhiteRat.exe
 C:\Users\IsBoris\Documents\Visual Studio 2015\Projects\WhiteRat\WhiteRat\obj\Debug\WhiteRat.pdb
-C:\Users\IsBoris\Documents\Visual Studio 2015\Projects\WhiteRat\WhiteRat\obj\Debug\WhiteRat.Form1.resources
-C:\Users\IsBoris\Documents\Visual Studio 2015\Projects\WhiteRat\WhiteRat\obj\Debug\WhiteRat.csproj.GenerateResource.Cache
