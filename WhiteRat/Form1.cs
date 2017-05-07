@@ -24,7 +24,7 @@ namespace WhiteRat
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			int[] config = { 256, 1, 1 };
+			int[] config = { 2, 2, 2 };
 			net = new Network(config);
 		}
 
@@ -134,6 +134,16 @@ namespace WhiteRat
 			}
 
 			return imgs;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			int[] netConfig = new int[3] { 2, 3, 1 };
+			NetworkSimple n = new NetworkSimple(netConfig);
+
+			float[,] testInput = new float[1, 2] { { 6, 8 } };
+
+			float[,] o = n.Forward(testInput);
 		}
 	}
 }

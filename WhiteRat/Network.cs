@@ -28,10 +28,10 @@ namespace WhiteRat
 			{
 				int neuronsInLayer = configuration[i];
 
-				Layer layerToAdd = new Layer(neuronsInLayer);
+				Layer layerToAdd = new Layer(neuronsInLayer + 1);
 
 				//For to loop through neurons (j is the j-th neuron in i-th layer)
-				for (int j = 0; j < neuronsInLayer; j++)
+				for (int j = 0; j < neuronsInLayer + 1; j++)
 				{
 					Neuron n;
 
@@ -77,7 +77,7 @@ namespace WhiteRat
 
 		public void PerceptronLearn(int[][] tData)
 		{
-			int iterations = 1000;
+			int iterations = 10;
 
 			for (int iteration = 0; iteration < iterations; iteration++)
 				foreach (int[] testCase in tData)

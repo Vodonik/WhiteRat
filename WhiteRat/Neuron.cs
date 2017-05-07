@@ -40,9 +40,6 @@ namespace WhiteRat
 
 			float biased = inputsSum + bias;
 
-			//Perceptron
-			//this.output = (biased > 0) ? 1 : 0;
-
 			//Sigmoid
 			this.output = 1.0f / (1 + (float)Math.Exp(-biased));
 		}
